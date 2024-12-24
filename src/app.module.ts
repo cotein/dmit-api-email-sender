@@ -9,13 +9,14 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { AuthModule } from './auth/auth.module';
 import { Module } from '@nestjs/common';
 import { MessagesWebSocketModule } from './messages-web-socket/messages-web-socket.module';
+import { EmailSenderModule } from './email-sender/email-sender.module';
 
 @Module({
   imports: [
     // ConfigModule.forRoot() carga las variables de entorno desde un archivo .env.
     ConfigModule.forRoot(),
 
-    // TypeOrmModule.forRoot() configura la conexión a la base de datos PostgreSQL.
+    //TypeOrmModule.forRoot(), //configura la conexión a la base de datos PostgreSQL.
     TypeOrmModule.forRoot({
       type: 'postgres', // Tipo de base de datos.
       host: process.env.DB_HOST, // Host de la base de datos.
@@ -48,6 +49,8 @@ import { MessagesWebSocketModule } from './messages-web-socket/messages-web-sock
     AuthModule,
 
     MessagesWebSocketModule,
+
+    EmailSenderModule,
   ],
 })
 export class AppModule {}

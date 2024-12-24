@@ -2,11 +2,15 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as bodyParser from 'body-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.setGlobalPrefix('api');
+
+  app.use(bodyParser.json({ limit: '20mb' }));
+  app.use(bodyParser.urlencoded({ limit: '20mb', extended: true }));
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -21,6 +25,19 @@ async function bootstrap() {
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
+
+  app.enableCors({
+    origin: [
+      'http://localhost:5173',
+      'https://www.dmit.ar',
+      'https://dmit.ar',
+      'https://api.dmit.ar',
+    ], // Permitir solo estos orígenes
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos HTTP permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras permitidas
+    credentials: true,
+    // Permitir credenciales (cookies, etc.)
+  });
 
   SwaggerModule.setup('api', app, document);
 
