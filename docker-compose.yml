@@ -20,13 +20,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: dmit_email_sender_app
     #env_file:
     #  - ./.env
     ports:
       - "3001:3000"
     volumes:
       - /etc/letsencrypt/:/etc/letsencrypt/
-    container_name: dmit_email_sender_app
     depends_on:
       - dmit_email_sender_db
     networks:
