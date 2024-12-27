@@ -1,20 +1,20 @@
 version: '3.8'
 
 services:
-  dmit_email_sender_db:
-    image: postgres:14
-    restart: always
-    ports:
-      - 5433:5432
-    environment:
-      - POSTGRES_DB=email_sender
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=311034
-    container_name: dmit_email_sender_db
-    volumes:
-      - ./postgres-data-email-sender:/var/lib/postgresql/data
-    networks:
-      - dmit_network
+  #dmit_email_sender_db:
+  #  image: postgres:14
+  #  restart: always
+  #  ports:
+  #    - 5433:5432
+  #  environment:
+  #    - POSTGRES_DB=email_sender
+  #    - POSTGRES_USER=postgres
+  #    - POSTGRES_PASSWORD=311034
+  #  container_name: dmit_email_sender_db
+  #  volumes:
+  #    - ./postgres-data-email-sender:/var/lib/postgresql/data
+  #  networks:
+  #    - dmit_network
 
   dmit_email_sender_app:
     build:
@@ -25,8 +25,6 @@ services:
       - "3001:3000"
     volumes:
       - /etc/letsencrypt/:/etc/letsencrypt/
-    depends_on:
-      - dmit_email_sender_db
     networks:
       - dmit_network
 

@@ -17,7 +17,7 @@ import { EmailSenderModule } from './email-sender/email-sender.module';
     ConfigModule.forRoot(),
 
     //TypeOrmModule.forRoot(), //configura la conexión a la base de datos PostgreSQL.
-    TypeOrmModule.forRoot({
+    /* TypeOrmModule.forRoot({
       type: 'postgres', // Tipo de base de datos.
       host: process.env.DB_HOST, // Host de la base de datos.
       port: parseInt(process.env.DB_PORT, 10), // Puerto de la base de datos.
@@ -26,29 +26,29 @@ import { EmailSenderModule } from './email-sender/email-sender.module';
       password: process.env.POSTGRES_PASSWORD, // Contraseña de la base de datos.
       autoLoadEntities: true, // Carga automáticamente las entidades.
       synchronize: true, // Sincroniza automáticamente las entidades con la base de datos.
-    }),
+    }), */
 
     // Importa el módulo de productos.
-    ProductsModule,
+    //ProductsModule,
 
     // Importa el módulo común.
-    CommonModule,
+    //CommonModule,
 
     // Importa el módulo de seed (semillas de datos).
-    SeedModule,
+    //SeedModule,
 
     // Importa el módulo de archivos.
-    FilesModule,
+    //FilesModule,
 
     // ServeStaticModule.forRoot() configura el servidor para servir archivos estáticos.
-    ServeStaticModule.forRoot({
+    /* ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'), // Ruta de la carpeta de archivos estáticos.
-    }),
+    }), */
 
     // Importa el módulo de autenticación.
-    AuthModule,
+    //AuthModule,
 
-    MessagesWebSocketModule,
+    //MessagesWebSocketModule,
 
     EmailSenderModule,
   ],
