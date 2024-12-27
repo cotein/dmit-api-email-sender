@@ -1,1 +1,6 @@
 package-lock*
+/dist
+/node_modules
+/build
+/postgres-data
+/postgres-data-email-sender
