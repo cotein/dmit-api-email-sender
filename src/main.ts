@@ -21,7 +21,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle(process.env.SWAGGER_API_DOCS)
-    .setDescription('Documentation for the teslo API')
+    .setDescription('Documentation for the Email sender API')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
