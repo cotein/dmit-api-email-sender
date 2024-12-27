@@ -14,7 +14,7 @@ services:
     volumes:
       - ./postgres-data-email-sender:/var/lib/postgresql/data
     networks:
-      - dmit_email_network
+      - dmit_network
 
   dmit_email_sender_app:
     build:
@@ -30,7 +30,8 @@ services:
     depends_on:
       - dmit_email_sender_db
     networks:
-      - dmit_email_network
+      - dmit_network
 
 networks:
-  dmit_email_network:
+  dmit_network:
+    external: true
