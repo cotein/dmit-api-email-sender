@@ -26,22 +26,20 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
 
-  app.enableCors();
-  //app.enableCors({
-  //  origin: [
-  //    'http://localhost:5173',
-  //    'https://www.dmit.ar',
-  //    'https://dmit.ar',
-  //    'https://api.dmit.ar',
-  //    'https://facturador.dmit.ar',
-  //    'https://www.facturador.dmit.ar',
-  //  ], // Permitir solo estos orígenes
-  //  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos HTTP permitidos
-  //  //allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras permitidas
-  //  allowedHeaders: ['*'],
-  //  credentials: true,
-  //  // Permitir credenciales (cookies, etc.)
-  //});
+  app.enableCors({
+    origin: [
+      'http://localhost:5173',
+      'https://www.dmit.ar',
+      'https://dmit.ar',
+      'https://api.dmit.ar',
+      'https://facturador.dmit.ar',
+      'https://www.facturador.dmit.ar',
+    ], // Permitir solo estos orígenes
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos HTTP permitidos
+    allowedHeaders: ['Origin, X-Requested-With, Content-Type, Accept'],
+    credentials: true,
+    // Permitir credenciales (cookies, etc.)
+  });
 
   SwaggerModule.setup('api', app, document);
 
