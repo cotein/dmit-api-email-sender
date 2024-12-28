@@ -36,9 +36,12 @@ async function bootstrap() {
       'https://www.facturador.dmit.ar',
     ], // Permitir solo estos orígenes
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos HTTP permitidos
-    allowedHeaders: ['Origin, X-Requested-With, Content-Type, Accept'],
+    allowedHeaders: [
+      'Origin, X-Requested-With, Content-Type, Accept',
+      'Authorization',
+    ],
     credentials: true,
-    // Permitir credenciales (cookies, etc.)
+    maxAge: 86400,
   });
 
   SwaggerModule.setup('api', app, document);
