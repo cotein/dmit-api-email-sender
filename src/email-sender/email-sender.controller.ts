@@ -7,7 +7,14 @@ export class EmailSenderController {
   constructor(private readonly emailSenderService: EmailSenderService) {}
 
   @Post()
-  create(@Body() data: any, @Res() res: Response) {
-    return this.emailSenderService.send(data);
+  async create(@Body() data: any, @Res() res: Response) {
+    try {
+      const response = await this.emailSenderService.send(data);
+      res.status(200).json(response);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: 'Failed to send email', details: error.message });
+    }
   }
 }
