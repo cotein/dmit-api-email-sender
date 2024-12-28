@@ -26,7 +26,8 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
 
-  app.enableCors({
+  app.enableCors();
+  /* app.enableCors({
     origin: [
       'http://localhost:5173',
       'https://www.dmit.ar',
@@ -42,7 +43,7 @@ async function bootstrap() {
     ],
     credentials: true,
     maxAge: 86400,
-  });
+  }); */
 
   SwaggerModule.setup('api', app, document);
 

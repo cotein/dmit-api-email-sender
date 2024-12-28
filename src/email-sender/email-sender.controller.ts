@@ -8,10 +8,6 @@ export class EmailSenderController {
 
   @Post()
   create(@Body() data: any, @Res() res: Response) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Accept');
-    console.log('🚀 ~ EmailSenderController ~ create ~ data:', data);
     return this.emailSenderService.send(data);
   }
 }
