@@ -10,11 +10,11 @@ export class EmailSenderController {
   async create(@Body() data: any, @Res() res: Response) {
     try {
       const response = await this.emailSenderService.send(data);
-      res.status(200).json(response);
+      return res.status(200).json(response);
     } catch (error) {
-      res
+      return res
         .status(500)
-        .json({ error: 'Failed to send email', details: error.message });
+        .json({ error: 'Error al enviar email', details: error.message });
     }
   }
 }

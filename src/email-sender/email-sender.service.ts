@@ -10,7 +10,6 @@ export class EmailSenderService {
   }
   // Create a new instance of Resend
   async send(email: any) {
-    console.log('🚀 ~ EmailSenderService ~ send ~ email:', email);
     try {
       const response = await this.resend.emails.send({
         from: email.from,
