@@ -34,7 +34,7 @@ export class EmailSenderService {
     const subject =
       'Verifica tu correo electrónico en DMIT - Facturador online';
 
-    const verificationUrl = `http://localhost:5173/verify-email?token=${email.token}`;
+    const verificationUrl = `https://www.facturador.dmit.ar/verify-email?token=${email.token}`;
 
     const html = verifyEmailTemplate(email.name, verificationUrl);
 
@@ -57,7 +57,7 @@ export class EmailSenderService {
 
     const subject = 'Restablece tu contraseña en DMIT - Facturador online';
 
-    const url = `http://localhost:5173/restablecer-contrasena?token=${data.token}`;
+    const url = `https://www.facturador.dmit.ar/restablecer-contrasena?token=${data.token}`;
 
     const html = forgotPasswordEmailtemplate(url);
 
