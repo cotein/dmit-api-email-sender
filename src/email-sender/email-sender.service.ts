@@ -1,5 +1,9 @@
+import { EmailForgotPassword } from './../types/Email';
 import { Injectable } from '@nestjs/common';
 import { Resend } from 'resend';
+import type { EmailData } from 'src/types/Email';
+import { verifyEmailTemplate } from './email-templates/verifyEmailtemplate';
+import { forgotPasswordEmailtemplate } from './email-templates/forgotPasswordEmailtemplate';
 
 @Injectable()
 export class EmailSenderService {
@@ -9,7 +13,7 @@ export class EmailSenderService {
     this.resend = new Resend(process.env.API_KEY_SEND_EMAIL);
   }
   // Create a new instance of Resend
-  async send(email: any) {
+  async sendinvoice(email: EmailData) {
     try {
       const response = await this.resend.emails.send({
         from: email.from,
@@ -25,19 +29,53 @@ export class EmailSenderService {
     }
   }
 
-  findAll() {
-    return `This action returns all emailSender`;
+  async sendEmailVerificationToUser(email: EmailData) {
+    const from = 'DMIT - Facturador Online <info@dmit.ar>';
+    const subject =
+      'Verifica tu correo electrónico en DMIT - Facturador online';
+
+    const verificationUrl = `http://localhost:5173/verify-email?token=${email.token}`;
+
+    const html = verifyEmailTemplate(email.name, verificationUrl);
+
+    try {
+      const response = await this.resend.emails.send({
+        from: from,
+        to: email.to,
+        subject: subject,
+        html: html,
+      });
+
+      return response;
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} emailSender`;
-  }
+  async sendPasswordResetEmail(data: EmailForgotPassword) {
+    const from = 'DMIT - Facturador Online <info@dmit.ar>';
 
-  update(id: number) {
-    return `This action updates a #${id} emailSender`;
-  }
+    const subject = 'Restablece tu contraseña en DMIT - Facturador online';
 
-  remove(id: number) {
-    return `This action removes a #${id} emailSender`;
+    const url = `http://localhost:5173/restablecer-contrasena?token=${data.token}`;
+
+    const html = forgotPasswordEmailtemplate(url);
+
+    try {
+      const response = await this.resend.emails.send({
+        from: from,
+        to: data.email,
+        subject: subject,
+        html: html,
+      });
+      console.log(
+        '🚀 ~ EmailSenderService ~ sendPasswordResetEmail ~ response:',
+        response,
+      );
+
+      return response;
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
   }
 }
