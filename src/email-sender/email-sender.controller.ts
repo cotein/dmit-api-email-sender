@@ -35,17 +35,9 @@ export class EmailSenderController {
 
   @Post('user-forgot-password')
   async sendPasswordResetEmail(@Body() data: any, @Res() res: Response) {
-    console.log(
-      '🚀 ~ EmailSenderController ~ sendPasswordResetEmail ~ data:',
-      data,
-    );
     try {
       const response =
         await this.emailSenderService.sendPasswordResetEmail(data);
-      console.log(
-        '🚀 ~ EmailSenderController ~ sendPasswordResetEmail ~ response:',
-        response,
-      );
 
       if (response.error) {
         return res.status(500).json(response.error);
