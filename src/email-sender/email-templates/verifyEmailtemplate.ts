@@ -286,7 +286,7 @@ export const verifyEmailTemplate = (name: string, url: string): string => {
 																	style="line-height:10px">
 																	<div class="fullWidth" style="max-width: 352px;">
 																		<img alt="I'm an image" height="auto"
-																			src="https://www.facturador.dmit.ar/assets/dmit-logo.png"
+																			src="https://facturador.dmit.ar/assets/dmit-logo.png"
 																			style="display: block; height: auto; border: 0; width: 100%;"
 																			title="I'm an image" width="352" />
 																	</div>
@@ -528,7 +528,7 @@ export const verifyEmailTemplate = (name: string, url: string): string => {
 																	style="line-height:10px">
 																	<div style="max-width: 149px;"><img
 																			alt="Alternate text" height="auto"
-																			src="https://www.facturador.dmit.ar/assets/dmit-logo.png"
+																			src="https://facturador.dmit.ar/assets/dmit-logo.png"
 																			style="display: block; height: auto; border: 0; width: 100%;"
 																			title="Alternate text" width="149" /></div>
 																</div>
