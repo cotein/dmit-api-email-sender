@@ -49,4 +49,36 @@ export class EmailSenderController {
       return res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
+  /**
+   * NUEVO ENDPOINT: Solicita un código de verificación para el carrito.
+   * Implementado de forma simple con 'any' para pruebas.
+   */
+  @Post('mmueble/cart/request-verification')
+  async requestVerificationCode(
+    @Body() data: any, // Acepta cualquier body (solo para pruebas)
+    @Res() res: Response,
+  ) {
+    try {
+      // 1. Llamamos al servicio. 'data' debe tener { email, name, code }
+      // El servicio `sendVerificationCode` es el que creamos antes.
+      const response = await this.emailSenderService.sendVerificationCode(data);
+
+      // 2. Si la línea anterior NO lanzó una excepción, fue exitosa.
+      // El 'if (response.error)' se elimina.
+
+      // 3. Devolvemos la respuesta exitosa.
+      return res.status(200).json(response);
+    } catch (error) {
+      // 4. Si el servicio (Resend o el template) falla, lanzará
+      // una excepción que será capturada aquí.
+      console.error('Error in requestVerificationCode controller:', error);
+
+      // Devolvemos el error 500
+      return res.status(500).json({
+        error: 'Internal Server Error',
+        message: error.message || 'No se pudo procesar el envío de email.',
+      });
+    }
+  }
 }
