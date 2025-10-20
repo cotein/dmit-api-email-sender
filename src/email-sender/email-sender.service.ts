@@ -69,10 +69,6 @@ export class EmailSenderService {
         subject: subject,
         html: html,
       });
-      console.log(
-        '🚀 ~ EmailSenderService ~ sendPasswordResetEmail ~ response:',
-        response,
-      );
 
       return response;
     } catch (error) {
@@ -81,7 +77,7 @@ export class EmailSenderService {
   }
 
   async sendVerificationCode(dto: any) {
-    const { email, name, code } = dto;
+    const { to, name, code } = dto;
 
     const from = 'MUNDO MUEBLE <info@dmit.ar>';
     const subject = 'Tu código de verificación de compra';
@@ -103,7 +99,7 @@ export class EmailSenderService {
       // 3. Enviar con Resend
       const response = await this.resend.emails.send({
         from: from,
-        to: email,
+        to: 'to',
         subject: subject,
         html: html,
       });
