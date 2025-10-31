@@ -59,6 +59,8 @@ export class EmailSenderController {
     @Body() data: any, // Acepta cualquier body (solo para pruebas)
     @Res() res: Response,
   ) {
+    console.log("🚀 ~ EmailSenderController ~ requestVerificationCode ~ res:", res)
+    console.log("🚀 ~ EmailSenderController ~ requestVerificationCode ~ data:", data)
     try {
       // 1. Llamamos al servicio. 'data' debe tener { email, name, code }
       // El servicio `sendVerificationCode` es el que creamos antes.
