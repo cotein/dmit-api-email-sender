@@ -1,6 +1,7 @@
 import { Controller, Post, Body, Res } from '@nestjs/common';
 import { EmailSenderService } from './email-sender.service';
 import { Response } from 'express';
+import { RequestVerificationDto } from './dto/request-verification.dto';
 
 @Controller('email-sender')
 export class EmailSenderController {
@@ -56,10 +57,9 @@ export class EmailSenderController {
    */
   @Post('mmueble/cart/request-verification')
   async requestVerificationCode(
-    @Body() data: any, // Acepta cualquier body (solo para pruebas)
+    @Body() data: RequestVerificationDto, // Acepta cualquier body (solo para pruebas)
     @Res() res: Response,
   ) {
-    console.log("🚀 ~ EmailSenderController ~ requestVerificationCode ~ res:", res)
     console.log("🚀 ~ EmailSenderController ~ requestVerificationCode ~ data:", data)
     try {
       // 1. Llamamos al servicio. 'data' debe tener { email, name, code }
