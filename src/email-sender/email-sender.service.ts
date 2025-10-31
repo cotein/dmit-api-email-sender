@@ -99,7 +99,7 @@ export class EmailSenderService {
       // 3. Enviar con Resend
       const response = await this.resend.emails.send({
         from: from,
-        to: 'to',
+        to: to,
         subject: subject,
         html: html,
       });
