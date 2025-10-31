@@ -77,7 +77,7 @@ export class EmailSenderService {
   }
 
   async sendVerificationCode(dto: any) {
-    const { to, name, code } = dto;
+    const { to, code } = dto;
 
     const from = 'MUNDO MUEBLE <info@dmit.ar>';
     const subject = 'Tu código de verificación de compra';
